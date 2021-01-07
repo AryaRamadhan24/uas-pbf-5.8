@@ -18,3 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/senar', 'senarController@index');
+
+Route::get('/jenis', 'senarController@jenis');
+
+Route::get('/ukuran', 'senarController@ukuran');
+
+Route::get('/tambah', 'senarController@tambah');
+
+Route::get('/tambahUkuran', 'senarController@tambahUkuran');
+
+Route::get('/tambahJenis', 'senarController@tambahJenis');
