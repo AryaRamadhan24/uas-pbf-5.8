@@ -12,7 +12,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Ukuran</h6>
             <div class="my-2"></div>
-            <a href="{{url('tambahUkuran')}}" class="btn btn-success btn-icon-split">
+            <a href="{{url('ukuran/add')}}" class="btn btn-success btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus "></i>
                 </span>
@@ -24,9 +24,31 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Ukuran</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach ($data as $i=>$item)
+                        <tr>
+                            <td>{{ $i+1 }}</td>
+                            <td> {{$item->ukuran}}</td>
+                            <td>
+                                <div class="row">
+
+                                    <a class="btn btn-primary" href="{{url('ukuran/edit/'.$item->ukuran_id)}}">Edit</a>
+                                    <form action="{{url('ukuran/'.$item->ukuran_id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger">delete</button>
+                                        
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

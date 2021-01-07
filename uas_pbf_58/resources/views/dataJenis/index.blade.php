@@ -38,7 +38,7 @@
                                 <div class="row">
 
                                     <a class="btn btn-primary" href="{{url('jenis/edit/'.$item->jenis_id)}}">Edit</a>
-                                    <form action="" method="post">
+                                    <form action="{{url('jenis/'.$item->jenis_id)}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">delete</button>

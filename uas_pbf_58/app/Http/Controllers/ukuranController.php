@@ -6,24 +6,24 @@ use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Facades\DB;
 
-class jenisController extends Controller
+class ukuranController extends Controller
 {
     public function index()
     {
-        $data = DB::table('data_jenis')->get();
-        return view ('dataJenis.index',compact ('data'));
+        $data = DB::table('data_ukuran')->get();
+        return view ('dataUkuran.index',compact ('data'));
     }
 
     public function add()
     {
-        return view ('dataJenis.tambahJenis');
+        return view ('dataUkuran.tambahUkuran');
     }
 
     
     public function store(Request $request)
     {
         $this->validate($request,[
-            'nama'=>'required'
+            'ukuran'=>'required'
         ],
         [
             //?
@@ -31,42 +31,42 @@ class jenisController extends Controller
         ]
     );
 
-        DB::table('data_jenis')->insert([
-            'jenis_id'=>Uuid::generate(4),
-            'nama'=>$request->nama
+        DB::table('data_ukuran')->insert([
+            'ukuran_id'=>Uuid::generate(4),
+            'ukuran'=>$request->ukuran
         ]);
 
         // Alert::success('selamat' ,'anda berhasil menginputkan');
 
-        return redirect('jenis');
+        return redirect('ukuran');
 
     }
 
     public function edit($id)
     {
-        $data = DB::table('data_jenis')->where('jenis_id',$id)->first();
-        return view('dataJenis.edit',compact('data'));
+        $data = DB::table('data_ukuran')->where('ukuran_id',$id)->first();
+        return view('dataUkuran.edit',compact('data'));
     }
 
     public function update(Request $request,$id)
     {
         $this->validate($request,[
-            'nama'=>'required'
+            'ukuran'=>'required'
         ]);
 
-        DB::table('data_jenis')->where('jenis_id',$id)->update([
-            'nama'=>$request->nama,
+        DB::table('data_ukuran')->where('ukuran_id',$id)->update([
+            'ukuran'=>$request->ukuran,
         ]);
         // toast('selamat anda telah berhasil mengubah data', 'success');
 
-        return redirect('jenis');
+        return redirect('ukuran');
 
     }
 
     public function delete($id)
     {
-        DB::table('data_jenis')->where('jenis_id',$id)->delete();
+        DB::table('data_ukuran')->where('ukuran_id',$id)->delete();
         // Alert::info('data', ' telat hapus');
-        return redirect('jenis');
+        return redirect('ukuran');
     }
 }
