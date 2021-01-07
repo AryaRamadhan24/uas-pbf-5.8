@@ -21,7 +21,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/senar', 'senarController@index');
 
-Route::get('/jenis', 'senarController@jenis');
+Route::get('/jenis', 'jenisController@index');
+
+Route::get('/jenis/add', 'jenisController@add');
+
+Route::post('/jenis/add', 'jenisController@store');
+
+Route::get('/jenis/edit/{id}', 'jenisController@edit');
 
 Route::get('/ukuran', 'senarController@ukuran');
 
@@ -29,4 +35,4 @@ Route::get('/tambah', 'senarController@tambah');
 
 Route::get('/tambahUkuran', 'senarController@tambahUkuran');
 
-Route::get('/tambahJenis', 'senarController@tambahJenis');
+
